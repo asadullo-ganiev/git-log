@@ -51,6 +51,9 @@ public class GitRepositoryServiceImpl implements GitRepositoryService{
     @Override
     public Flux<GitLog> getLogs(int count) throws GitAPIException {
 
+        if (!this.gitRepository.getConnected())
+            return Flux.empty();
+
         Git git = gitRepository.getGit();
 
         Iterable<RevCommit> remoteLogs = git.log().call();

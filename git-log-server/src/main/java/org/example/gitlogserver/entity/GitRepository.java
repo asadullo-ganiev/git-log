@@ -3,7 +3,7 @@ package org.example.gitlogserver.entity;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.revwalk.RevCommit;
 
-public class GitRepository {
+public classGitRepository {
 
 
 
@@ -19,5 +19,9 @@ public class GitRepository {
 
     public Git getGit() {
         return git;
+    }
+
+    public Boolean getConnected() {
+        return connected;
     }
 }
