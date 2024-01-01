@@ -27,8 +27,9 @@ public class GitRepoController {
     }
 
     @GetMapping("/logs")
-    public Flux<GitLog> getLogsByRepositoryUrl(@RequestParam Integer logsCount) throws GitAPIException {
-        return gitRepositoryService.getLogs(logsCount);
+    public Flux<GitLog> getLogsByRepositoryUrl(@RequestParam String repositoryUrl,
+                                               @RequestParam Integer logsCount) throws GitAPIException {
+        return gitRepositoryService.getLogs(repositoryUrl, logsCount);
     }
 
     @ExceptionHandler(GitAPIException.class)

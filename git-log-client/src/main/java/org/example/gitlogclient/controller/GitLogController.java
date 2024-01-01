@@ -22,7 +22,8 @@ public class GitLogController {
     }
 
     @GetMapping("/logs")
-    public Flux<GitLogResponseDTO> getLogsByRepositoryUrl(@RequestParam Integer logsCount) {
-        return gitLogClientService.getLogs(logsCount);
+    public Flux<GitLogResponseDTO> getLogsByRepositoryUrl(@RequestParam String repositoryUrl,
+                                                          @RequestParam Integer logsCount) {
+        return gitLogClientService.getLogs(repositoryUrl, logsCount);
     }
 }

@@ -12,5 +12,5 @@ public interface GitLogClientService {
 
     Mono<String> registerRepository(GitRepositoryRequestDTO gitRepositoryRequestDTO);
 
-    Flux<GitLogResponseDTO> getLogs(Integer logsCount);
+    Flux<GitLogResponseDTO> getLogs(String repositoryUrl, Integer logsCount);
 }

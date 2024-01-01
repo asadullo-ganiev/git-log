@@ -13,6 +13,6 @@ public interface GitRepositoryService {
 
     Mono<String> setRepositoryPublic(String repositoryUrl) throws GitAPIException, IOException;
 
-    Flux<GitLog> getLogs(int count) throws GitAPIException;
+    Flux<GitLog> getLogs(String repositoryUrl, int count) throws GitAPIException;
 
 }

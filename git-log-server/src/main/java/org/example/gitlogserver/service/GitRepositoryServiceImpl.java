@@ -43,18 +43,16 @@ public class GitRepositoryServiceImpl implements GitRepositoryService{
                 .setDirectory(localPath)
                 .call();
 
-        gitRepository.connect(repositoryUrl, git);
+        gitRepository.addRepository(repositoryUrl, git);
 
         return Mono.just(repositoryUrl);
     }
 
     @Override
-    public Flux<GitLog> getLogs(int count) throws GitAPIException {
+    public Flux<GitLog> getLogs(String repositoryUrl, int count) throws GitAPIException {
 
-        if (!this.gitRepository.getConnected())
-            return Flux.empty();
 
-        Git git = gitRepository.getGit();
+        Git git = gitRepository.getRepository(repositoryUrl);
 
         Iterable<RevCommit> remoteLogs = git.log().call();
 

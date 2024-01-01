@@ -3,25 +3,17 @@ package org.example.gitlogserver.entity;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.revwalk.RevCommit;
 
-public classGitRepository {
+import java.util.concurrent.ConcurrentHashMap;
 
+public class GitRepository {
 
+    private final ConcurrentHashMap<String, Git> repositories = new ConcurrentHashMap<>();
 
-    Git git;
-    String url;
-    Boolean connected = Boolean.FALSE;
-
-    public void connect(String repositoryUrl, Git git) {
-        this.git = git;
-        this.url = repositoryUrl;
-        this.connected = Boolean.TRUE;
+    public void addRepository(String url, Git git) {
+        repositories.put(url, git);
     }
 
-    public Git getGit() {
-        return git;
-    }
-
-    public Boolean getConnected() {
-        return connected;
+    public Git getRepository(String url) {
+        return repositories.get(url);
     }
 }

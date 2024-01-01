@@ -33,11 +33,12 @@ public class GitLogClientServiceImpl implements GitLogClientService{
     }
 
     @Override
-    public Flux<GitLogResponseDTO> getLogs(Integer logsCount) {
+    public Flux<GitLogResponseDTO> getLogs(String repositoryUrl, Integer logsCount) {
         return webClient.get()
                 .uri(serverEndpointConfig.getGitServerEndpoint(), uriBuilder -> uriBuilder
                         .path("/logs")
                         .queryParam("logsCount", logsCount.toString())
+                        .queryParam("repositoryUrl", repositoryUrl)
                         .build())
                 .retrieve()
                 .bodyToFlux(GitLogResponseDTO.class);
