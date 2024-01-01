@@ -16,4 +16,8 @@ public class GitRepository {
     public Git getRepository(String url) {
         return repositories.get(url);
     }
+
+    public Boolean containsRepository(String url) {
+        return repositories.containsKey(url);
+    }
 }

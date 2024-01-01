@@ -51,6 +51,9 @@ public class GitRepositoryServiceImpl implements GitRepositoryService{
     @Override
     public Flux<GitLog> getLogs(String repositoryUrl, int count) throws GitAPIException {
 
+        if(!gitRepository.containsRepository(repositoryUrl)) {
+            throw new NullPointerException(); //custom exception can be used
+        }
 
         Git git = gitRepository.getRepository(repositoryUrl);
 
